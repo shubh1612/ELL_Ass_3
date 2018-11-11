@@ -21,6 +21,18 @@ def load_fashion_mnist(path, label_present = True):
 		return images, labels
 
 	return images
+def load_mnistx(path, nlabels):
+	X_train =[]
+	Y_train = []
+	for i in range(nlabels):
+	    for image_path in glob.glob(path+str(i)+ "/*.png" ) :
+	        image = misc.imread(image_path)
+	        image = image.reshape(784,)
+	        X_train.append(image)
+	        Y_train.append(i)
+	Y_train = np.asarray(Y_train)        
+	X_train = np.asarray(X_train)
+	return X_train, Y_train	
 
 def load_medical(path, label_map, label_present = True):
 	df = pd.read_csv(path)
